@@ -1,0 +1,13 @@
+#Datasource 
+
+resource "local_file" "games" {
+
+	filename = "/root/fav_game.txt"
+	content = local_file.indor_games.content
+}
+
+data "local_file" "indor_games" {
+	
+	filename = "/root/indor_games.txt"
+
+}

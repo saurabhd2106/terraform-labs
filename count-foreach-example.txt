@@ -1,0 +1,49 @@
+# Count 
+
+resource "local_file" games {
+
+	filename = "/root/fav_game.txt"
+	
+}
+
+resource "local_file" games {
+
+	filename = var.filename[count.index]
+	count = length(var.filename)
+}
+
+variable "filename" {
+	
+	default = [
+		"/root/fav_game.txt"
+		"/root/fav_game2.txt"
+		"/root/fav_game3.txt"
+	]
+}
+
+
+#For-each 
+resource "local_file" games {
+
+	filename = "/root/fav_game.txt"
+	
+}
+
+resource "local_file" games {
+
+	filename = each.value
+	
+	#for_each -- metaargument
+	for_each = var.filename
+}
+
+variable "filename" {
+	type = set(string)
+	default = [
+		"/root/fav_game.txt"
+		"/root/fav_game2.txt"
+		"/root/fav_game3.txt"
+	]
+}
+
+
